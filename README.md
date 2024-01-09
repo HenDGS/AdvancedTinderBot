@@ -18,7 +18,7 @@
 
 A simple bot to auto-like on Tinder. 
 
-Uses Seleniumm to create a local Chrome profile and like profiles with human time speed and random timed interactions (like scrolling through photos) to not be perceived as a bot.
+Uses Seleniumm to create a local Chrome User on the same path as the .exe and like profiles with human time speed and random timed interactions (like scrolling through photos) to not be perceived as a bot.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
