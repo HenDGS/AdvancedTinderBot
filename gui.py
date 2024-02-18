@@ -9,7 +9,7 @@ try:
 except:
     pass
 
-races = ["White", "Black", "Asian", "Indian", "Latino", "Middle Eastern"]
+races = ["White", "Black", "Asian", "Indian", "Latino Hispanic", "Middle Eastern"]
 checkboxes = [sg.Checkbox(race, default=True, key=race) for race in races]
 
 main_tab = [

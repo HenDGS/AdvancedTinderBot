@@ -133,7 +133,7 @@ def main(amount: int = 100, ratio: int = 85, first_login: bool = False,
     options.add_argument(r"--user-data-dir=" + path + r"\ChromeData")
 
     if first_login:
-        driver = uc.Chrome(headless=True, use_subprocess=True, options=options)
+        driver = uc.Chrome(headless=False, use_subprocess=True, options=options)
     else:
         driver = uc.Chrome(headless=headless, use_subprocess=True, options=options)
 
