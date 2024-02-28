@@ -32,7 +32,6 @@ def main(amount: int = 100, ratio: int = 85, races: list = ['indian', 'asian', '
 
 def handle_first_login() -> None:
     root = Tk()
-    root.iconbitmap('tinder-128.ico')
     root.withdraw()
 
     options = uc.ChromeOptions()
