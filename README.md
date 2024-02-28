@@ -99,5 +99,6 @@ python gui.py
 - [ ] Add option to use a proxy
 - [ ] Disable buttons in GUI while bot is running
 - [ ] Add option for the user to control the bot speed
+- [ ] Add option to use ChatGPT API to answer messages
 
 <p style="text-align: right;">(<a href="#readme-top">back to top</a>)</p>
