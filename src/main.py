@@ -10,7 +10,7 @@ def main(amount: int = 100, ratio: int = 85, races: list = ['indian', 'asian', '
 
     options = uc.ChromeOptions()
     options.add_argument('--no-first-run --no-service-autorun --password-store=basic')
-    path = os.path.dirname(sys.argv[0])
+    path = os.path.dirname(os.path.abspath(sys.argv[0]))
     options.add_argument(r"--user-data-dir=" + path + r"\ChromeData")
 
     driver = uc.Chrome(headless=headless, use_subprocess=True, options=options)
@@ -37,7 +37,7 @@ def handle_first_login() -> None:
     options = uc.ChromeOptions()
 
     options.add_argument('--no-first-run --no-service-autorun --password-store=basic')
-    path = os.path.dirname(sys.argv[0])
+    path = os.path.dirname(os.path.abspath(sys.argv[0]))
     options.add_argument(r"--user-data-dir=" + path + r"\ChromeData")
 
     driver = uc.Chrome(headless=False, use_subprocess=True, options=options)

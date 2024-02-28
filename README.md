@@ -71,17 +71,21 @@ The * *Console* * tab will print some events that happened.
 <a id="how-to-run"></a>
 ## How To Run
 
-Clone or download the repository and run the following commands on the terminal in the same path as the * *main.py* * file.
+Clone or download the repository and run the following commands on the terminal in the directory of the project.
 
 ```bash 
 pip install -r requirements.txt
 ```
 
 ```bash
-python gui.py
+python src/gui.py
 ```
 
+Alternatively, you can run the * *main.py* * file directly. But as its still not officially supported, you can't pass the arguments in terminal, so you will have to change the default values in the code.
 
+```bash
+python src/main.py
+```
 
 <p style="text-align: right;">(<a href="#readme-top">back to top</a>)</p>
 
@@ -100,5 +104,17 @@ python gui.py
 - [ ] Disable buttons in GUI while bot is running
 - [ ] Add option for the user to control the bot speed
 - [ ] Add option to use ChatGPT API to answer messages
+- [ ] Better terminal support
+
+<p style="text-align: right;">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- FAQ -->
+<a id="faq"></a>
+## FAQ
+
+- Why use ChromeData instead of auto-login?
+
+    Because 2FA, and the fact that there are 3 ways to login. Also, its safer to use the user data and just login once instead of constantly send suspicious login requests to Tinder.
+
 
 <p style="text-align: right;">(<a href="#readme-top">back to top</a>)</p>
