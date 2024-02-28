@@ -23,7 +23,7 @@
 <a id="about-the-project"></a>
 ## About The Project
 
-A bot to auto-like on Tinder with advanced filters and human-like interactions.
+A bot to auto-like on Tinder with human-like interactions. The best feature of this bot is that it has options for filters that are not available on the Tinder app, like filtering by name or race, with more to come.
 
 Uses Seleniumm to create a local Chrome User on the same path as the .exe and like profiles with human time speed and random timed interactions (like scrolling through photos) to not be perceived as a bot.
 
@@ -56,8 +56,11 @@ Now run the bot without the * *First Login* * option, selecting the number of li
 ## To Do
 
 - [ ] Add filter for tags
+- [ ] Add filter for job
 - [ ] Add filter for height
-- [ ] Add filter for keywords (blacklist and whitelist)
+- [ ] Add filter for zodiac signs
+- [ ] Add filter for keywords in bio (blacklist and whitelist)
+- [ ] Add log with results
 - [ ] Add video tutorial
 
 <p style="text-align: right;">(<a href="#readme-top">back to top</a>)</p>
