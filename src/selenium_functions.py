@@ -2,14 +2,12 @@ import os
 import random
 import sys
 import time
-from tkinter import messagebox
 import undetected_chromedriver as uc
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.support import expected_conditions as ec
 from selenium.webdriver.support.wait import WebDriverWait
-
 from person import TinderPerson
 
 try:
@@ -69,14 +67,14 @@ def like(driver: uc.Chrome, amount: int, ratio: int, races: list, names: list) -
         try:
             if len(driver.find_elements(By.XPATH, '//div[@class="W(100%) Px(20px) Pb(16px) Typs(display-2-strong) Ta('
                                                   'start)"]')) > 0:
-                print('Curtidas Limitadas')
+                print('End of likes')
                 break
         except:
             pass
 
         try:
             if len(driver.find_elements(By.XPATH, '//*[@id="c-1941919723"]/main/div/div[1]/div/div[2]/div/div[1]')) > 0:
-                print('Deu Match')
+                print('Matched')
                 driver.get('https://tinder.com/app/recs')
         except:
             pass
@@ -103,13 +101,8 @@ def like(driver: uc.Chrome, amount: int, ratio: int, races: list, names: list) -
                                           '2]/div/div/div[2]/button').click()
 
 
-def login(driver: uc.Chrome) -> None:
-    driver.get('https://tinder.com/app/recs')
-
+def deny_notifications(driver: uc.Chrome) -> None:
     try:
-        login_button = driver.find_elements(By.CLASS_NAME, 'l17p5q9z')
-        login_button[4].click()
+        driver.find_elements(By.CLASS_NAME, 'c9iqosj oxn9zzn')[1].click()
     except:
         pass
-
-    messagebox.showinfo("Tinder Bot", "Manually login and press OK to continue")

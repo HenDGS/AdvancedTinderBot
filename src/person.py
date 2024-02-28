@@ -2,7 +2,6 @@ from selenium.webdriver.common.by import By
 import undetected_chromedriver as uc
 import numpy as np
 from PIL import Image
-from deepface import DeepFace
 import io
 
 
@@ -24,6 +23,8 @@ class TinderPerson:
         return age
 
     def get_race(self, i: int) -> str:
+        from deepface import DeepFace
+
         img = self.driver.find_element(By.CSS_SELECTOR, format_class_name('profileCard__slider__img Z(-1)', 'div'))
         img_content = img.screenshot_as_png
         img = Image.open(io.BytesIO(img_content))
