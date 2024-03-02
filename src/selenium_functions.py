@@ -41,8 +41,8 @@ def wait_element(driver: uc.Chrome, tag: str, search: str) -> WebElement:
 
 
 def click_next_photo(driver: uc.Chrome) -> None:
-    for _ in range(random.randint(1, 3)):
-        sleep = random.uniform(1, 4)
+    for _ in range(random.randint(1, 4)):
+        sleep = random.uniform(1, 2)
         time.sleep(sleep)
 
         mouse_hover = driver.find_element(By.XPATH, '//div[@class="Expand D(f) Pos(r) tappable-view '
@@ -50,15 +50,18 @@ def click_next_photo(driver: uc.Chrome) -> None:
         action = ActionChains(driver)
         action.move_to_element(mouse_hover).perform()
 
-        next_button = driver.find_element(By.XPATH,
-                                          '//*[local-name()="svg"][@class="Pos(a) Pe(n) Z(1) T(50%) End(0) Mx(10px) '
-                                          'D(n)--s C($c-ds-foreground-button-primary) Op(0) tappable-view:h_Op(1) '
-                                          'Trsdu($fast) Rotate(180deg)"]')
-        action.move_to_element(next_button).click().perform()
+        try:
+            next_button = driver.find_element(By.XPATH,
+                                              '//*[local-name()="svg"][@class="Pos(a) Pe(n) Z(1) T(50%) End(0) Mx(10px) '
+                                              'D(n)--s C($c-ds-foreground-button-primary) Op(0) tappable-view:h_Op(1) '
+                                              'Trsdu($fast) Rotate(180deg)"]')
+            action.move_to_element(next_button).click().perform()
+        except:
+            pass
 
 
 def like(driver: uc.Chrome, amount: int, ratio: int, races: list, names: list) -> None:
-    dislike = False
+    dislike: bool = False
 
     for i in range(amount):
         sleep = random.uniform(1, 5)
@@ -79,10 +82,14 @@ def like(driver: uc.Chrome, amount: int, ratio: int, races: list, names: list) -
         except:
             pass
 
-        wait_element(driver, 'XPATH', '//*[@id="c-1398387530"]/div/div[1]/div/main/div[1]/div/div/div[1]/div['
-                                      '1]/div/div[2]/div[3]/button').click()
+        # info button
+        wait = WebDriverWait(driver, 10)
+        list_length = 2
+        wait.until(lambda driver: len(driver.find_elements(By.CSS_SELECTOR, 'button.P\\(0\\).Trsdu\\(\\$normal\\)')) >= list_length)
+        driver.find_elements(By.CSS_SELECTOR, 'button.P\\(0\\).Trsdu\\(\\$normal\\)')[1].click()
 
         person = TinderPerson(driver)
+        print(f'Race: {person.race}')
 
         if person.race not in races:
             dislike = True
@@ -91,14 +98,18 @@ def like(driver: uc.Chrome, amount: int, ratio: int, races: list, names: list) -
             if person.name not in names:
                 dislike = True
 
+        wait = WebDriverWait(driver, 10)
+        list_length = 3
+        wait.until(lambda driver: len(
+            driver.find_elements(By.CSS_SELECTOR, 'button.button.Lts\\(\\$ls-s\\).Z\\(0\\).CenterAlign.Mx\\(a\\).Cur\\(p\\).Tt\\(u\\)')) >= list_length)
+        interaction_buttons = driver.find_elements(By.CSS_SELECTOR, 'button.button.Lts\\(\\$ls-s\\).Z\\(0\\).CenterAlign.Mx\\(a\\).Cur\\(p\\).Tt\\(u\\)')
+
         if random.random() * 100 < ratio and not dislike:
             click_next_photo(driver)
-            wait_element(driver, 'XPATH', '//*[@id="c-1398387530"]/div/div[1]/div/main/div[1]/div/div/div[1]/div['
-                                          '2]/div/div/div[4]/button').click()
+            interaction_buttons[2].click()
 
         else:
-            wait_element(driver, 'XPATH', '//*[@id="c-1398387530"]/div/div[1]/div/main/div[1]/div/div/div[1]/div['
-                                          '2]/div/div/div[2]/button').click()
+            interaction_buttons[0].click()
 
 
 def deny_notifications(driver: uc.Chrome) -> None:

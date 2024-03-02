@@ -8,12 +8,8 @@ def main(amount: int = 100, ratio: int = 85, races: list = ['indian', 'asian', '
          names: list = []) -> None:
     print('Bot started')
 
-    options = uc.ChromeOptions()
-    options.add_argument('--no-first-run --no-service-autorun --password-store=basic')
-    path = os.path.dirname(os.path.abspath(sys.argv[0]))
-    options.add_argument(r"--user-data-dir=" + path + r"\ChromeData")
+    driver: uc.Chrome = init_chrome(headless)
 
-    driver = uc.Chrome(headless=headless, use_subprocess=True, options=options)
     driver.maximize_window()
     driver.get('https://tinder.com/app/recs')
 
@@ -34,13 +30,7 @@ def handle_first_login() -> None:
     root = Tk()
     root.withdraw()
 
-    options = uc.ChromeOptions()
-
-    options.add_argument('--no-first-run --no-service-autorun --password-store=basic')
-    path = os.path.dirname(os.path.abspath(sys.argv[0]))
-    options.add_argument(r"--user-data-dir=" + path + r"\ChromeData")
-
-    driver = uc.Chrome(headless=False, use_subprocess=True, options=options)
+    driver: uc.Chrome = init_chrome()
 
     driver.get('https://tinder.com/app/recs')
 
@@ -54,6 +44,17 @@ def handle_first_login() -> None:
     messagebox.showinfo("Tinder Bot", "Login Saved")
     driver.quit()
     sys.exit()
+
+
+def init_chrome(headless: bool = False) -> uc.Chrome:
+    options = uc.ChromeOptions()
+    options.add_argument('--no-first-run --no-service-autorun --password-store=basic')
+    path = os.path.dirname(os.path.abspath(sys.argv[0]))
+    options.add_argument(r"--user-data-dir=" + path + r"\ChromeData")
+
+    driver = uc.Chrome(headless=headless, use_subprocess=True, options=options)
+
+    return driver
 
 
 if __name__ == '__main__':
