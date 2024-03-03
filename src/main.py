@@ -5,7 +5,7 @@ from tkinter import Tk, messagebox
 
 def main(amount: int = 100, ratio: int = 85, races: list = ['indian', 'asian', 'latino hispanic', 'black',
                                                             'middle eastern', 'white'], headless: bool = False,
-         names: list = []) -> None:
+         names: list = [], bio_keywords: list = [], interests: list = []) -> None:
     print('Bot started')
 
     driver: uc.Chrome = init_chrome(headless)
@@ -19,7 +19,7 @@ def main(amount: int = 100, ratio: int = 85, races: list = ['indian', 'asian', '
     thread = threading.Thread(target=deny_notifications, args=(driver,))
     thread.start()
     print('Started liking')
-    like(driver, amount, ratio, races, names)
+    like(driver, amount, ratio, races, names, bio_keywords, interests)
 
     driver.quit()
     thread.join()

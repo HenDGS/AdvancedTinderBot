@@ -93,11 +93,10 @@ python src/main.py
 <a id="to-do"></a>
 ## To Do
 
-- [ ] Add filter for tags
 - [ ] Add filter for job
 - [ ] Add filter for height
 - [ ] Add filter for zodiac signs
-- [ ] Add filter for keywords in bio (blacklist and whitelist)
+- [ ] Blacklist mode for filters
 - [ ] Add log with results
 - [ ] Add video tutorial
 - [ ] Add option to use a proxy

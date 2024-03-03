@@ -6,6 +6,7 @@ import os
 import sys
 
 try:
+    os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
     os.chdir(sys._MEIPASS)
 except:
     pass
@@ -26,6 +27,10 @@ options_tab = [
     checkboxes,
     [sg.Text("List of Names (separated with commas):", font=("Helvetica", 16))],
     [sg.InputText(key="names")],
+    [sg.Text("List of Keywords in Bio (separated with commas):", font=("Helvetica", 16))],
+    [sg.InputText(key="bio")],
+    [sg.Text("List of Interests (separated with commas):", font=("Helvetica", 16))],
+    [sg.InputText(key="interests")],
 ]
 
 output = sys.stdout
@@ -49,13 +54,15 @@ while True:
         amount: int = int(values["likes"]) if values["likes"].isdigit() else 0
         ratio: int = int(values["ratio"]) if values["ratio"].isdigit() else 0
         names: list = values["names"].split(",") if values["names"] else []
+        bio_keywords: list = values["bio"].split(",") if values["bio"] else []
+        interests: list = values["interests"].split(",") if values["interests"] else []
 
         if amount > 0 and 0 <= ratio <= 100:
             window["Start Bot"].update(disabled=True)
 
             sg.popup_quick_message("Bot is running")
             thread = threading.Thread(target=main_bot, args=(amount, ratio, races_list,
-                                                             values["headless"], names))
+                                                             values["headless"], names, bio_keywords, interests))
             thread.start()
 
         else:
